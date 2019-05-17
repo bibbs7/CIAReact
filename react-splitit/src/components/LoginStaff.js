@@ -1,6 +1,7 @@
 import React from "react";
 import "./LoginStaff.css";
 import $ from "jquery";
+import logo from '../SplitLogo.png';
 
 export class LoginStaff extends React.Component {
     render() {
@@ -13,7 +14,7 @@ export class LoginStaff extends React.Component {
                 <div className="container-fluid">
                     <div className="row" id="row1">
                         <div className="col-sm-4 col-xs-4 col-md-4 col-lg-4">
-                            <img src="../../../assets/image/CUB_LOGO.png" alt="SplitIT" className="responsive" />
+                            
                         </div>
                         <div className="col-sm-4 col-xs-4 col-md-4 col-lg-4" />
                         <div className="col-sm-2 col-xs-2 col-md-2 col-lg-2">

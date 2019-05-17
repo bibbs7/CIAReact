@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HelloController {
 
     @RequestMapping("/")
+    
     @CrossOrigin(origins = "http://localhost:3000")
     public String index() {
         return "Greetings from Spring Boot!";

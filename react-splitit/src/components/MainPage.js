@@ -21,22 +21,7 @@ export class MainPage extends React.Component {
                         <div className="col-sm-2 col-xs-2 col-md-2 col-lg-2 ">
                         </div>
                     </div>
-                    <nav className="navbar navbar-default col-sm-12 col-xs-12 col-md-12 col-lg-12 ">
-                        <div className="container-fluid">
-                            <div className="row" id="row2">
-                                <div className="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                    <ul className="nav navbar-nav ">
-                                        <li className="col-sm-1 col-xs-1 col-md-1 col-lg-1"><a href="abola.pt"> <img className="homeButton" src="../../../assets/image/HOME_BUTTON.png" /></a></li>
-                                        <li><a href="contact.asp">Who are we?</a></li>
-                                        <li><a href="contact.asp">What is our mission?</a></li>
-                                        <li><a href="about.asp">Statistics</a></li>
-                                        <li><a href="about.asp">Where are we?</a></li>
-                                        <li><a href="about.asp">Contacts</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
+                    
                     <section className="col-sm-12 col-xs-12 col-md-12 col-lg-12" style={{ background: 'linear-gradient(to right, #ffb566 30%, #ffffff)' }}>
                         <div className="container-fluid">
                             <div className="row" id="row3">
@@ -127,29 +112,7 @@ export class MainPage extends React.Component {
                 isAdmin: document.forms["register"]["isAdmin"].value,
 
             });
-            $.ajax({
-                type: "POST",
-                url: project + "" + url,
-                contentType: "application/json; charset=utf-8",
-                crossDomain: true,
-                dataType: "json", //The type of data that you're expecting back from the server
-                success: function (response) {
-                    if (response) {
-                        alert("Success!\nYour account was registered.");
-                        window.location.replace(project + main);
-                    }
-                    else {
-                        alert("No response");
-                    }
-                },
-                error: function (response) {
-                    if (response.status == "Bad request") {
-                        console.log(response);
-                        alert("Error: " + response.status + "  Wrong fields! Try again!!");
-                    }
-                },
-                data: data
-            });
+
 
             event.preventDefault();
 

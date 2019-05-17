@@ -1,12 +1,15 @@
 com\splitit\Models\Request.class
+com\splitit\Controllers\LoginData.class
 com\splitit\Models\User.class
 com\splitit\Controllers\TableController.class
 com\splitit\Controllers\UserController.class
 com\splitit\splitit\DemoApplication.class
 com\splitit\Repository\UserRepository.class
+com\splitit\Controllers\RequestData.class
 com\splitit\Controllers\RegisterData.class
 com\splitit\Controllers\RequestController.class
 com\splitit\Controllers\ProductController.class
+com\splitit\Controllers\ProductData.class
 com\splitit\Repository\TableRepository.class
 com\splitit\Models\Tables.class
 com\splitit\Repository\RequestRepository.class
