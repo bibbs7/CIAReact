@@ -39,7 +39,7 @@ export class Register extends React.Component {
                                     <input type="text" className="form-control" id="userName" name="userName" placeholder="name" />
                                     <label htmlFor="password">Password :</label>
                                     <input type="text" className="form-control" id="password" name="password" placeholder="password" />
-                                    <form action method="post">
+                                    <form action ="true">
                                         <label htmlFor="userName">Role : </label>
                                         <br />
                                         <input type="radio" id="admin" defaultValue="A" name="radio" /> Administrator
@@ -56,51 +56,53 @@ export class Register extends React.Component {
         );
 
 
-
-        function register(e) {
-            
-            this.props.history.push('/');
-
-            e.preventDefault();
-            var url = "users/add";
-            var project = "http://localhost:3000";
-            var home = "/";
-
-            var data = JSON.stringify({
-                name: document.forms["register"]["name"].value,
-                password: document.forms["register"]["password"].value,
-                isAdmin: document.forms["register"]["isAdmin"].value,
-
-            });
-
-            $.ajax({
-                type: "POST",
-                url: project + "/" + url,
-                contentType: "application/json; charset=utf-8",
-                crossDomain: true,
-                dataType: "json", //The type of data that you're expecting back from the server
-                success: function (response) {
-                    if (response) {
-                        alert("Success!\nYour account was registered.");
-                        window.location.replace(project + "/" + home);
-                    }
-                    else {
-                        alert("No response");
-                    }
-                },
-                error: function (response) {
-                    if (response.status == 400) {
-                        console.log(response);
-                        alert("Error: " + response.status);
-                    }
-                },
-                data: data
-            });
-
-        }
     }
 };
 
+
+
+
+function register(e) {
+
+    this.props.history.push('/');
+
+    e.preventDefault();
+    var url = "users/add";
+    var project = "http://localhost:3000";
+    var home = "/";
+
+    var data = JSON.stringify({
+        name: document.forms["register"]["name"].value,
+        password: document.forms["register"]["password"].value,
+        isAdmin: document.forms["register"]["isAdmin"].value,
+
+    });
+
+    $.ajax({
+        type: "POST",
+        url: project + "/" + url,
+        contentType: "application/json; charset=utf-8",
+        crossDomain: true,
+        dataType: "json", //The type of data that you're expecting back from the server
+        success: function (response) {
+            if (response) {
+                alert("Success!\nYour account was registered.");
+                window.location.replace(project + "/" + home);
+            }
+            else {
+                alert("No response");
+            }
+        },
+        error: function (response) {
+            if (response.status == 400) {
+                console.log(response);
+                alert("Error: " + response.status);
+            }
+        },
+        data: data
+    });
+
+}
 
 
 export default Register;

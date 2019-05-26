@@ -40,62 +40,64 @@ export class LoginAdmin extends React.Component {
                                     <input type="text" className="form-control" id="password" name="password" placeholder="password" />
                                 </div>
                                 <div className="col-sm-4 col-xs-4 col-md-4 col-lg-4">
-                                    <a href="#" className="myButton" onClick='loginAdmin(event)'>Login</a>
+                                    <a href="#" className="myButton" onClick= {loginAdmin}>Login</a>
                                 </div>
                             </div>
                         </div>
                     </section>
                 </div></div>
         );
-        function loginAdmin(event) {
-            var url = "user/loginAdmin";
-            var project = "http://localhost:3000/";
-            var main = "Mainpage.js";
-
-            var data = JSON.stringify({
-                name: document.forms["login"]["name"].value,
-                password: document.forms["login"]["password"].value,
-
-
-            });
-
-            $.ajax({
-                type: "POST",
-                url: project + "" + url,
-                contentType: "application/json; charset=utf-8",
-                crossDomain: true,
-                dataType: "json", //The type of data that you're expecting back from the server
-                success: function (response) {
-                    if (response) {
-                        alert("Success!\nYour account was registered.");
-                        window.location.replace(project + main);
-                    }
-                    else {
-                        alert("No response");
-                    }
-                },
-                error: function (response) {
-                    if (response.status == "Unauthorized") {
-                        console.log(response);
-                        alert("Error: " + response.status + "  You must be an Admin to login here. Try the staff login");
-                    }
-                    else
-                        if (response.status == "Forbidden") {
-                            console.log(response);
-                            alert("Error: " + response.status + "  Wrong path");
-                        }
-                        else
-                            if (response.status == "Bad request") {
-                                console.log(response);
-                                alert("Error: " + response.status + "  Wrong password! Try again!!");
-                            }
-                },
-                data: data
-            });
-
-            event.preventDefault();
-        }
     }
 };
+
+
+function loginAdmin(event) {
+    var url = "user/loginAdmin";
+    var project = "http://localhost:3000/";
+    var main = "Mainpage.js";
+
+    var data = JSON.stringify({
+        name: document.forms["login"]["name"].value,
+        password: document.forms["login"]["password"].value,
+
+
+    });
+
+    $.ajax({
+        type: "POST",
+        url: project + "" + url,
+        contentType: "application/json; charset=utf-8",
+        crossDomain: true,
+        dataType: "json", //The type of data that you're expecting back from the server
+        success: function (response) {
+            if (response) {
+                alert("Success!\nYour account was registered.");
+                window.location.replace(project + main);
+            }
+            else {
+                alert("No response");
+            }
+        },
+        error: function (response) {
+            if (response.status == "Unauthorized") {
+                console.log(response);
+                alert("Error: " + response.status + "  You must be an Admin to login here. Try the staff login");
+            }
+            else
+                if (response.status == "Forbidden") {
+                    console.log(response);
+                    alert("Error: " + response.status + "  Wrong path");
+                }
+                else
+                    if (response.status == "Bad request") {
+                        console.log(response);
+                        alert("Error: " + response.status + "  Wrong password! Try again!!");
+                    }
+        },
+        data: data
+    });
+
+    // event.preventDefault();
+}
 
 export default LoginAdmin;
