@@ -18,12 +18,7 @@ export class LoginAdmin extends React.Component {
                             
                         </div>
                         <div className="col-sm-4 col-xs-4 col-md-4 col-lg-4" />
-                        <div className="col-sm-2 col-xs-2 col-md-2 col-lg-2">
-                            <a id="login">Log in</a>
-                        </div>
-                        <div className="col-sm-2 col-xs-2 col-md-2 col-lg-2 ">
-                            <a id="registar" href="https://www.w3schools.com/html/">Registar</a>
-                        </div>
+                       
                     </div>
                   
                     <section className="col-sm-12 col-xs-12 col-md-12 col-lg-12" style={{ background: 'linear-gradient(to right, #ffb566 30%, #ffffff)' }}>
@@ -53,14 +48,12 @@ export class LoginAdmin extends React.Component {
 
 function loginAdmin(event) {
     var url = "user/loginAdmin";
-    var project = "http://localhost:3000/";
+    var project = "http://localhost:8080/";
     var main = "Mainpage.js";
 
     var data = JSON.stringify({
-        name: document.forms["login"]["name"].value,
-        password: document.forms["login"]["password"].value,
-
-
+        id: document.getElementById("adminId").value,
+        password: document.getElementById("password").value
     });
 
     $.ajax({
@@ -72,24 +65,24 @@ function loginAdmin(event) {
         success: function (response) {
             if (response) {
                 alert("Success!\nYour account was registered.");
-                window.location.replace(project + main);
+                window.location.replace("http://localhost:3000/mainpage");
             }
             else {
                 alert("No response");
             }
         },
         error: function (response) {
-            if (response.status == "Unauthorized") {
+            if (response.status === "Unauthorized") {
                 console.log(response);
                 alert("Error: " + response.status + "  You must be an Admin to login here. Try the staff login");
             }
             else
-                if (response.status == "Forbidden") {
+                if (response.status === "Forbidden") {
                     console.log(response);
                     alert("Error: " + response.status + "  Wrong path");
                 }
                 else
-                    if (response.status == "Bad request") {
+                    if (response.status === "Bad request") {
                         console.log(response);
                         alert("Error: " + response.status + "  Wrong password! Try again!!");
                     }

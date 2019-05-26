@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,7 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.Response.Status;
 
 import com.splitit.Models.Request;
+import com.splitit.Models.RequestData;
 import com.splitit.Models.User;
 import com.splitit.Repository.RequestRepository;
 
@@ -37,6 +39,7 @@ public class RequestController<ImModel> {
 		this.requestRepository = requestRepository;
 	}
 
+    @CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping(path = "/add") // Map ONLY GET Requests
 	public @ResponseBody HttpStatus addNewUser(@RequestBody RequestData data) {
 		// @ResponseBody means the returned String is the response, not a view name
@@ -58,18 +61,20 @@ public class RequestController<ImModel> {
 		
 	}
 
+    @CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/{id}")
 	public Optional<Request> findById(@PathVariable final long id) {
         return requestRepository.findById(id);
     	}
 
+    @CrossOrigin(origins = "http://localhost:3000")
 	@PutMapping(value="/{id}")
   public ResponseEntity<Request> closeRequest(@PathVariable("id") long id,
                                         @RequestBody Request request){
     return requestRepository.findById(id)
         .map(record -> {
             record.setStatus(request.getStatus());
-            Request updated = requestRepository.save(record);
+            Request updated = requestRepository.saveAndFlush(record);
             return ResponseEntity.ok().body(updated);
         }).orElse(ResponseEntity.notFound().build());
   }

@@ -24,6 +24,7 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.Response.Status;
 
 import com.splitit.Models.Product;
+import com.splitit.Models.ProductData;
 import com.splitit.Models.User;
 import com.splitit.Repository.ProductRepository;
 
@@ -41,6 +42,7 @@ public class ProductController<ImModel> {
 		this.productRepository = productRepository;
 	}
 
+	    @CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping(path = "/add") // Map ONLY GET Requests
 	public HttpStatus addProduct( @RequestBody ProductData data) {
 		// @ResponseBody means the returned String is the response, not a view name
@@ -59,35 +61,40 @@ public class ProductController<ImModel> {
 	}
 
 	@GetMapping("/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
 	public Optional<Product> findById(@PathVariable final long id) {
         return productRepository.findById(id);
     	}
 
   @PutMapping(value="/price/{id}")
+  @CrossOrigin(origins = "http://localhost:3000")
   public ResponseEntity<Product> changePrice(@PathVariable("id") long id,
                                         @RequestBody Product product){
     return productRepository.findById(id)
         .map(record -> {
             record.setPrice(product.getPrice());
-            Product updated = productRepository.save(record);
+            Product updated = productRepository.saveAndFlush(record);
 			
 			return ResponseEntity.ok().body(updated);
         }).orElse(ResponseEntity.notFound().build());
   }
 
+
+  @CrossOrigin(origins = "http://localhost:3000")
   @PutMapping(value="/discount/{id}")
   public ResponseEntity<Product> changeDiscountPrice(@PathVariable("id") long id,
                                         @RequestBody Product product){
     return productRepository.findById(id)
         .map(record -> {
             record.setDiscountPrice(product.getDiscountPrice());
-            Product updated = productRepository.save(record);
+            Product updated = productRepository.saveAndFlush(record);
 			
 			return ResponseEntity.ok().body(updated);
         }).orElse(ResponseEntity.notFound().build());
   }
 
 
+  @CrossOrigin(origins = "http://localhost:3000")
   @DeleteMapping("/delete/{id}")
 public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Long id, @RequestBody Product product ){
 		Product deletingProduct = productRepository.findById(id).get(); 

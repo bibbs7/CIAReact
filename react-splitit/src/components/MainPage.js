@@ -11,9 +11,6 @@ export class MainPage extends React.Component {
                 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
                 <div className="container-fluid">
                     <div className="row" id="row1">
-                        <div className="col-sm-4 col-xs-4 col-md-4 col-lg-4">
-                            <img src="../../../assets/image/SplitIt.png" alt="SplitIT" className="responsive" />
-                        </div>
                         <div className="col-sm-4 col-xs-4 col-md-4 col-lg-4" />
                         <div className="col-sm-2 col-xs-2 col-md-2 col-lg-2">
                             <a id="login">Log out</a>
@@ -21,7 +18,7 @@ export class MainPage extends React.Component {
                         <div className="col-sm-2 col-xs-2 col-md-2 col-lg-2 ">
                         </div>
                     </div>
-                    
+
                     <section className="col-sm-12 col-xs-12 col-md-12 col-lg-12" style={{ background: 'linear-gradient(to right, #ffb566 30%, #ffffff)' }}>
                         <div className="container-fluid">
                             <div className="row" id="row3">
@@ -33,15 +30,7 @@ export class MainPage extends React.Component {
                                 <title>SplitIT</title>
                                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossOrigin="anonymous" />
                                 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
-                                <div className="container-fluid">
-                                    <div className="row" id="row1">
-                                        <div className="col-sm-4 col-xs-4 col-md-4 col-lg-4">
-                                            <img src="../../../assets/image/CUB_LOGO.png" alt="SplitIT" className="responsive" />
-                                        </div>
-                                        <div className="col-sm-4 col-xs-4 col-md-4 col-lg-4" />
-                                        <div className="col-sm-4 col-xs-4 col-md-4 col-lg-4" />
-                                    </div>
-                                </div>
+                               
                                 <div className="container-fluid">
                                     <div className="row" id="row2">
                                         <div className="col-sm-12 col-xs-12 col-md-12 col-lg-12 ">
@@ -97,26 +86,9 @@ export class MainPage extends React.Component {
                                 </div>
                             </div>
                         </div></section>
-                </div></div>
+                </div>
+            </div>
         );
-
-
-        function register(event) {
-            var url = "users/add";
-            var project = "http://localhost:3000";
-            var home = "Homepage.js";
-
-            var data = JSON.stringify({
-                name: document.forms["register"]["name"].value,
-                password: document.forms["register"]["password"].value,
-                isAdmin: document.forms["register"]["isAdmin"].value,
-
-            });
-
-
-            event.preventDefault();
-
-        }
     }
 };
 

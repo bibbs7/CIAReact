@@ -13,15 +13,16 @@ import javax.persistence.Table;
     		@Id
     		@GeneratedValue(strategy=GenerationType.AUTO)
 		@Column(name = "id")
-		private Integer id;
+		private Long id;
 		@Column(name = "name")
 		private String name;
 		@Column(name = "password")
 		private String password;
 		@Column(name = "isAdmin")
 		private boolean isAdmin;
+		
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 

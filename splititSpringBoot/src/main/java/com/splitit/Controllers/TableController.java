@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +42,7 @@ public class TableController<ImModel> {
         this.tableRepository = tableRepository;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path = "/add") // Map ONLY GET Requests
     public @ResponseBody HttpStatus addTable(@RequestBody int numSeats) {
         // @ResponseBody means the returned String is the response, not a view name
@@ -51,18 +53,20 @@ public class TableController<ImModel> {
         t.setnumSeats(numSeats);
         for (int i = 0; i < numSeats; i++) {
             t.setSeatId(i);
-        	tableRepository.save(t);
+        	tableRepository.saveAndFlush(t);
         }
         //return tableRepository.getOne((long) t.getId());
        return HttpStatus.CREATED;
     }
     
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{id}")
     public Optional<Tables> findById(@PathVariable final long id) {
         return tableRepository.findById(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping(value = "/{id}")
     public <U> ResponseBuilder changeSeats(@PathVariable("id") long id, @RequestBody int newNumber) {
 
@@ -75,7 +79,7 @@ public class TableController<ImModel> {
                 int idToAdd = numActualSeats + 1;
                 for( int i = 0; i < seatsToAdd ; i++) {
                     record.setSeatId(idToAdd++);
-                    tableRepository.save(record);
+                    tableRepository.saveAndFlush(record);
                 }
                 return null;
 
@@ -88,6 +92,7 @@ public class TableController<ImModel> {
   
 
 
+    @CrossOrigin(origins = "http://localhost:3000")
   @DeleteMapping("/delete/{id}")
 public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Long id, @RequestBody Tables table ){
 		Tables deletingTable = tableRepository.findById(id).get(); 

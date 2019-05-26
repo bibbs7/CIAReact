@@ -47,54 +47,53 @@ export class LoginStaff extends React.Component {
                 </div></div>
         );
 
-
-
-
-        function loginStaff(e) {
-
-            var url = "user/loginStaff";
-            var project = "http://localhost:3000";
-            var main = "Mainpage.js";
-
-            var data = JSON.stringify({
-                name: document.forms["login"]["name"].value,
-                password: document.forms["login"]["password"].value,
-
-
-            });
-
-            $.ajax({
-                type: "POST",
-                url: project + "" + url,
-                contentType: "application/json; charset=utf-8",
-                crossDomain: true,
-                dataType: "json", //The type of data that you're expecting back from the server
-                success: function (response) {
-                    if (response) {
-                        alert("Success!\nYour account was registered.");
-                        window.location.replace(project + main);
-                    }
-                    else {
-                        alert("No response");
-                    }
-                },
-                error: function (response) {
-                    if (response.status == "Forbidden") {
-                        console.log(response);
-                        alert("Error: " + response.status + "  Wrong path");
-                    }
-                    else
-                        if (response.status == "Bad request") {
-                            console.log(response);
-                            alert("Error: " + response.status + "  Wrong password or user doesnt exist!! Try again!!");
-                        }
-                },
-                data: data
-            });
-
-            e.preventDefault();
-        }
     }
 };
+
+
+
+function loginStaff(e) {
+
+    var url = "user/loginStaff";
+    var project = "http://localhost:8080";
+    var main = "Mainpage.js";
+
+    var data = JSON.stringify({
+        id: document.getElementById("staffId").value,
+        password: document.getElementById("password").value
+
+    });
+
+    $.ajax({
+        type: "POST",
+        url: project + "" + url,
+        contentType: "application/json; charset=utf-8",
+        crossDomain: true,
+        dataType: "json", //The type of data that you're expecting back from the server
+        success: function (response) {
+            if (response) {
+                alert("Success!\nYour account was registered.");
+                window.location.replace("http://localhost:3000/mainpage");
+            }
+            else {
+                alert("No response");
+            }
+        },
+        error: function (response) {
+            if (response.status === "Forbidden") {
+                console.log(response);
+                alert("Error: " + response.status + "  Wrong path");
+            }
+            else
+                if (response.status === "Bad request") {
+                    console.log(response);
+                    alert("Error: " + response.status + "  Wrong password or user doesnt exist!! Try again!!");
+                }
+        },
+        data: data
+    });
+
+    e.preventDefault();
+}
 
 export default LoginStaff;

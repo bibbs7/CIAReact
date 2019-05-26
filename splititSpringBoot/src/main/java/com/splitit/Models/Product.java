@@ -8,6 +8,8 @@ import javax.persistence.QueryHint;
 import javax.persistence.Table;
 import javax.persistence.Entity;
 
+
+
 @Entity
 @Table(name="products") // This tells Hibernate to make a table out of this class
 	public class Product {

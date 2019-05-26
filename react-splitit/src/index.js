@@ -7,7 +7,7 @@ import Homepage from './components/Homepage';
 import LoginStaff from './components/LoginStaff';
 import LoginAdmin from './components/LoginAdmin';
 import Register from './components/Register';
-import User from './components/User';
+import MainPage from './components/MainPage';
 import * as serviceWorker from './serviceWorker';
 import logo from './SplitLogo.png';
 
@@ -19,25 +19,22 @@ const routing = (
             <li>
                 <Link to="/">Home</Link>
                 </li>
-                <li>
-                    <Link to="/users/:id">My Account</Link>
-                </li>
             <li>
-                <Link to="/loginstaff">Login Staff</Link>
+                <Link to="/user/loginStaff">Login Staff</Link>
                 </li>
                 <li>
-                    <Link to="/loginadmin">Login Administrator</Link>
+                    <Link to="/user/loginAdmin">Login Administrator</Link>
                 </li>
             <li>
-                <Link to="/register">Register</Link>
+                <Link to="/user/add">Register</Link>
             </li>
             </ul>
             <Switch>
                 <Route exact path="/" component={Homepage} />
-                <Route path="/loginstaff" component={LoginStaff} />
-                <Route path="/loginadmin" component={LoginAdmin} />
-                <Route path="/users/:id" component={User} />
-                <Route path="/register" component={Register} />
+                <Route path="/user/loginStaff" component={LoginStaff} />
+                <Route path="/user/loginAdmin" component={LoginAdmin} />
+                <Route path="/user/add" component={Register} />
+                <Route path="/mainpage" component={MainPage} />
             </Switch>
     </div>
     </Router >
