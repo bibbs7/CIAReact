@@ -48,7 +48,7 @@ export class LoginAdmin extends React.Component {
 
 function loginAdmin(event) {
     var url = "user/loginAdmin";
-    var project = "https://splitall.herokuapp.com";
+    var project = "http://localhost:8080";
     var main = "Mainpage.js";
 
     var data = JSON.stringify({
@@ -58,7 +58,7 @@ function loginAdmin(event) {
 
     $.ajax({
         type: "POST",
-        url: project + "" + url,
+        url: project + "/" + url,
         contentType: "application/json; charset=utf-8",
         crossDomain: true,
         dataType: "json", //The type of data that you're expecting back from the server
