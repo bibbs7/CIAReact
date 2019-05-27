@@ -48,7 +48,7 @@ export class LoginAdmin extends React.Component {
 
 function loginAdmin(event) {
     var url = "user/loginAdmin";
-    var project = "http://localhost:8080/";
+    var project = "https://splitall.herokuapp.com";
     var main = "Mainpage.js";
 
     var data = JSON.stringify({

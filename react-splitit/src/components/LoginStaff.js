@@ -55,7 +55,7 @@ export class LoginStaff extends React.Component {
 function loginStaff(e) {
 
     var url = "user/loginStaff";
-    var project = "http://localhost:8080";
+    var project = "https://splitall.herokuapp.com";
     var main = "Mainpage.js";
 
     var data = JSON.stringify({

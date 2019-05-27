@@ -68,7 +68,7 @@ function register(e) {
 
     e.preventDefault();
     var url = "user/add";
-    var project = "http://localhost:8080";
+    var project = "https://splitall.herokuapp.com";
     var home = "/";
 
     var data = JSON.stringify({
